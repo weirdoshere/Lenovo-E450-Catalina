@@ -796,7 +796,7 @@
 		<key>ScreenResolution</key>
 		<string>1366x768</string>
 		<key>Theme</key>
-		<string>FlatCamp</string>
+		<string>theme</string>
 	</dict>
 	<key>Graphics</key>
 	<dict>
@@ -904,7 +904,7 @@
 				<key>Comment</key>
 				<string>Enable 128MB DVMT-prealloc, 48MB framebuffer, 48MB cursor bytes, 0x0a260006</string>
 				<key>Disabled</key>
-				<true/>
+				<false/>
 				<key>Find</key>
 				<data>BgAmCgEDAwMAAAACAAAwAQAAYAA=</data>
 				<key>InfoPlistPatch</key>
@@ -1032,7 +1032,7 @@
 				<key>Comment</key>
 				<string>HDMI-audio, port 0105, 0x0a260005 0x0a260006, 0x0d220003, 0x0a2e000a, 0x0a26000a</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>AQUJAAAEAACHAAAA</data>
 				<key>InfoPlistPatch</key>
@@ -1046,7 +1046,7 @@
 				<key>Comment</key>
 				<string>HDMI-audio, port 0204, 0x0d220003, 0x0a2e000a, 0x0a26000a</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>AgQKAAAEAACHAAAA</data>
 				<key>InfoPlistPatch</key>
@@ -1060,7 +1060,7 @@
 				<key>Comment</key>
 				<string>HDMI-audio, port 0204, 0x0a260005 0x0a260006</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>AgQJAAAEAACHAAAA</data>
 				<key>InfoPlistPatch</key>
@@ -1074,7 +1074,7 @@
 				<key>Comment</key>
 				<string>HDMI-audio, port 0105, 0x0a2e0008, 0x0a16000c, 0x0a2e000d, 0x0a26000d</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>AQUJAAAEAAAHAQAA</data>
 				<key>InfoPlistPatch</key>
@@ -1088,7 +1088,7 @@
 				<key>Comment</key>
 				<string>HDMI-audio, port 0204, 0x0a2e0008, 0x0a16000c, 0x0a2e000d, 0x0a26000d</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>AgQJAAAEAAAHAQAA</data>
 				<key>InfoPlistPatch</key>
@@ -1102,7 +1102,7 @@
 				<key>Comment</key>
 				<string>Enable internal display after sleep for 0x0a2e0008 on 10.13.x (c) syscl</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>AQAAAEAAAAAeAgAABQUJAQ==</data>
 				<key>InfoPlistPatch</key>
@@ -1118,7 +1118,7 @@
 				<key>Comment</key>
 				<string>Enable internal display after sleep for 0x0a2e000a, 0x0a26000a</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>AQAAAEAAAADWAAAABQUAAA==</data>
 				<key>InfoPlistPatch</key>
