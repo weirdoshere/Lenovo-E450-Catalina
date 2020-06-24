@@ -13,13 +13,13 @@
 				<key>#Comment-IRQ Fix</key>
 				<string>The following fixes may be needed for onboard audio/USB/etc</string>
 				<key>AddIMEI</key>
-				<true/>
+				<false/>
 				<key>AddMCHC</key>
 				<true/>
 				<key>FixADP1</key>
 				<true/>
 				<key>FixHDA</key>
-				<true/>
+				<false/>
 				<key>FixHPET</key>
 				<true/>
 				<key>FixIPIC</key>
@@ -27,6 +27,8 @@
 				<key>FixMutex</key>
 				<true/>
 				<key>FixRTC</key>
+				<true/>
+				<key>FixS3D</key>
 				<true/>
 				<key>FixSBUS</key>
 				<true/>
@@ -423,6 +425,8 @@
 			<key>SuspendOverride</key>
 			<true/>
 		</dict>
+		<key>DisableASPM</key>
+		<true/>
 		<key>DisabledAML</key>
 		<array>
 			<string>SSDT.aml</string>
@@ -441,6 +445,8 @@
 			</dict>
 		</array>
 		<key>FixHeaders</key>
+		<true/>
+		<key>PatchAPIC</key>
 		<true/>
 		<key>SSDT</key>
 		<dict>
@@ -474,7 +480,9 @@
 		<key>#DefaultVolume</key>
 		<string>LastBootedVolume</string>
 		<key>Arguments</key>
-		<string>kext-dev-mode=1 dart=0 nv_disable=1 debug=0x100</string>
+		<string></string>
+		<key>DefaultLoader</key>
+		<string>hack </string>
 		<key>HibernationFixup</key>
 		<false/>
 		<key>NeverHibernate</key>
@@ -494,45 +502,19 @@
 	<string>Lenovo ThinkPad T450 Hackintosh | Broadwell | Author: Jsassu20 (James Sassu) | macOS Catalina</string>
 	<key>Devices</key>
 	<dict>
-		<key>Arbitrary</key>
-		<array>
-			<dict>
-				<key>CustomProperties</key>
-				<array>
-					<dict>
-						<key>Disabled</key>
-						<false/>
-						<key>Key</key>
-						<string>No-hda-gfx</string>
-						<key>Value</key>
-						<data>qqqqqqo=</data>
-					</dict>
-					<dict>
-						<key>Disabled</key>
-						<false/>
-						<key>Key</key>
-						<string>alc-layout-id</string>
-						<key>Value</key>
-						<integer>1</integer>
-					</dict>
-				</array>
-				<key>PciAddr</key>
-				<string>PciRoot(0x0)/Pci(0x1B,0x0)</string>
-			</dict>
-		</array>
 		<key>Audio</key>
 		<dict>
 			<key>AFGLowPowerState</key>
 			<false/>
 			<key>Inject</key>
-			<string>No</string>
+			<integer>3</integer>
 			<key>ResetHDA</key>
 			<false/>
 		</dict>
 		<key>ForceHPET</key>
 		<false/>
 		<key>HDMIInjection</key>
-		<false/>
+		<true/>
 		<key>Inject</key>
 		<false/>
 		<key>LpcTune</key>
@@ -742,43 +724,6 @@
 				<key>name</key>
 				<string>Intel Thermal Controller</string>
 			</dict>
-			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
-			<dict>
-				<key>AAPL,GfxYTile</key>
-				<data>AQAAAA==</data>
-				<key>AAPL,ig-platform-id</key>
-				<data>AAAGFg==</data>
-				<key>AAPL,slot-name</key>
-				<string>Internal@0,2,0</string>
-				<key>device-id</key>
-				<data>FhYAAA==</data>
-				<key>device_type</key>
-				<string>VGA compatible controller</string>
-				<key>disable-external-gpu</key>
-				<data>AQAAAA==</data>
-				<key>enable-hdmi20</key>
-				<data>AQAAAA==</data>
-				<key>framebuffer-con0-enable</key>
-				<data>AQAAAA==</data>
-				<key>framebuffer-con0-pipe</key>
-				<data>EgAAAA==</data>
-				<key>framebuffer-con1-enable</key>
-				<data>AQAAAA==</data>
-				<key>framebuffer-con1-pipe</key>
-				<data>EgAAAA==</data>
-				<key>framebuffer-con2-enable</key>
-				<data>AQAAAA==</data>
-				<key>framebuffer-con2-pipe</key>
-				<data>EgAAAA==</data>
-				<key>framebuffer-patch-enable</key>
-				<data>AQAAAA==</data>
-				<key>framebuffer-unifiedmem</key>
-				<data>AAAAgA==</data>
-				<key>hda-gfx</key>
-				<string>onboard-1</string>
-				<key>model</key>
-				<string>HD Graphics 5500</string>
-			</dict>
 			<key>PciRoot(0x0)/Pci(0x3,0x0)</key>
 			<dict>
 				<key>AAPL,slot-name</key>
@@ -813,7 +758,7 @@
 			<false/>
 		</dict>
 		<key>UseIntelHDMI</key>
-		<false/>
+		<true/>
 	</dict>
 	<key>DisableDrivers</key>
 	<array>
@@ -865,7 +810,7 @@
 			<key>ATI</key>
 			<false/>
 			<key>Intel</key>
-			<false/>
+			<true/>
 			<key>NVidia</key>
 			<false/>
 		</dict>
@@ -1082,6 +1027,106 @@
 				<string>com.apple.driver.usb.AppleUSBXHCI</string>
 				<key>Replace</key>
 				<data>g/k/Dw==</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>HDMI-audio, port 0105, 0x0a260005 0x0a260006, 0x0d220003, 0x0a2e000a, 0x0a26000a</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>AQUJAAAEAACHAAAA</data>
+				<key>InfoPlistPatch</key>
+				<false/>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelFramebufferAzul</string>
+				<key>Replace</key>
+				<data>AQUJAAAIAACHAAAA</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>HDMI-audio, port 0204, 0x0d220003, 0x0a2e000a, 0x0a26000a</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>AgQKAAAEAACHAAAA</data>
+				<key>InfoPlistPatch</key>
+				<false/>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelFramebufferAzul</string>
+				<key>Replace</key>
+				<data>AgQKAAAIAACHAAAA</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>HDMI-audio, port 0204, 0x0a260005 0x0a260006</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>AgQJAAAEAACHAAAA</data>
+				<key>InfoPlistPatch</key>
+				<false/>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelFramebufferAzul</string>
+				<key>Replace</key>
+				<data>AgQJAAAIAACHAAAA</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>HDMI-audio, port 0105, 0x0a2e0008, 0x0a16000c, 0x0a2e000d, 0x0a26000d</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>AQUJAAAEAAAHAQAA</data>
+				<key>InfoPlistPatch</key>
+				<false/>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelFramebufferAzul</string>
+				<key>Replace</key>
+				<data>AQUJAAAIAAAHAQAA</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>HDMI-audio, port 0204, 0x0a2e0008, 0x0a16000c, 0x0a2e000d, 0x0a26000d</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>AgQJAAAEAAAHAQAA</data>
+				<key>InfoPlistPatch</key>
+				<false/>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelFramebufferAzul</string>
+				<key>Replace</key>
+				<data>AgQJAAAIAAAHAQAA</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Enable internal display after sleep for 0x0a2e0008 on 10.13.x (c) syscl</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>AQAAAEAAAAAeAgAABQUJAQ==</data>
+				<key>InfoPlistPatch</key>
+				<false/>
+				<key>MatchOS</key>
+				<string>10.13.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.AppleIntelFramebufferAzul</string>
+				<key>Replace</key>
+				<data>AQAAAEAAAAAfAgAABQUJAQ==</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Enable internal display after sleep for 0x0a2e000a, 0x0a26000a</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>AQAAAEAAAADWAAAABQUAAA==</data>
+				<key>InfoPlistPatch</key>
+				<false/>
+				<key>Name</key>
+				<string>AppleIntelFramebufferAzul</string>
+				<key>Replace</key>
+				<data>AQAAAEAAAAAeAAAABQUAAA==</data>
 			</dict>
 		</array>
 	</dict>
